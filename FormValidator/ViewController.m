@@ -11,9 +11,15 @@
 
 @interface ViewController () <UITextFieldDelegate>
 
-@property (weak, nonatomic)IBOutlet UITextField * nameTextField;
+@property (weak, nonatomic) IBOutlet UITextField * nameTextField;
 @property (weak, nonatomic) IBOutlet UITextField * addressTextField;
 @property (weak, nonatomic) IBOutlet UITextField * zipTextField;
+@property (weak, nonatomic) IBOutlet UITextField * stateTextField;
+@property (weak, nonatomic) IBOutlet UITextField * cityTextField;
+@property (weak, nonatomic) IBOutlet UITextField * phoneTextField;
+
+@property (weak, nonatomic) IBOutlet UILabel * mailingAddressField;
+
 @property (strong, nonatomic) FormValidator * formValidator;
 
 
@@ -23,6 +29,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.navigationItem.title = @"Validator";
     self.addressTextField.placeholder = @"Address";
     
     self.formValidator = [[FormValidator alloc]init];
@@ -46,11 +53,34 @@
     }else if([textField isEqual:self.addressTextField]){
         if( [self.formValidator isValidAddress:self.addressTextField.text]){
             [self.addressTextField resignFirstResponder];
+            [self.cityTextField becomeFirstResponder];
+            return YES;
+        }
+        
+    }else if([textField isEqual:self.cityTextField]){
+        if( [self.formValidator isValidCity:self.cityTextField.text]){
+            [self.cityTextField resignFirstResponder];
+            [self.stateTextField becomeFirstResponder];
+            return YES;
+        }
+        
+    }else if([textField isEqual:self.stateTextField]){
+        if( [self.formValidator isValidState:self.stateTextField.text]){
+            [self.stateTextField resignFirstResponder];
             [self.zipTextField becomeFirstResponder];
             return YES;
         }
     }else if([textField isEqual:self.zipTextField]){
-        return [self.formValidator isZipCode:self.zipTextField.text];
+        if ( [self.formValidator isZipCode:self.zipTextField.text]){
+            [self.zipTextField resignFirstResponder];
+            [self.phoneTextField becomeFirstResponder];
+            return YES;
+        }
+    }else if([textField isEqual:self.phoneTextField]){
+        if( [self.formValidator isValidPhone:self.phoneTextField.text]){
+            self.mailingAddressField.text = @"Hello World!";
+            return YES;
+        }
     }
 
     return NO;

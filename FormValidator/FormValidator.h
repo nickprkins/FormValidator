@@ -12,6 +12,9 @@
 
 -(BOOL) validateName:(NSString*) nameString;
 -(BOOL) isValidAddress:(NSString *) addressString;
--(BOOL) isZipCode:(NSString *)zipString;
+-(BOOL) isValidCity:(NSString *) cityString;
+-(BOOL) isValidState:(NSString *) stateString;
+-(BOOL) isZipCode:(NSString *) zipString;
+-(BOOL) isValidPhone:(NSString *) phoneString;
 
 @end

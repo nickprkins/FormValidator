@@ -1,3 +1,4 @@
+
 //
 //  FormValidator.m
 //  FormValidator
@@ -32,14 +33,47 @@
     return rc;
 }
 
--(BOOL) isZipCode:(NSString *)zipString{
+-(BOOL) isValidCity:(NSString *)cityString{
     BOOL rc = NO;
-    
-    NSCharacterSet * set = [NSCharacterSet characterSetWithCharactersInString:@"1234567890"];
-    rc = ([zipString length]==5) && ([zipString rangeOfCharacterFromSet:set].location != NSNotFound);
+    if(cityString.length >= 2){
+        rc = YES;
+    }else{
+        rc = NO;
+    }
     
     return rc;
+}
+
+-(BOOL) isValidState:(NSString *)stateString{
+    BOOL rc = NO;
+    if(stateString.length == 2){
+        rc = YES;
+    }else{
+        rc = NO;
+    }
     
+    return rc;
+}
+
+-(BOOL) isValidPhone:(NSString *)phoneString{
+    BOOL rc = YES;
+ 
+    return rc;
+}
+
+-(BOOL) isZipCode:(NSString*)zipString{
+    BOOL rc =NO;
+    NSCharacterSet * set = [NSCharacterSet characterSetWithCharactersInString:@"1234567890"];
+    
+    set = [set invertedSet];
+    
+    NSRange myRange =[zipString rangeOfCharacterFromSet:set];
+    
+    rc =(myRange.location == NSNotFound);
+    
+    rc = ([zipString length]==5) && rc;
+    
+    return rc;
 }
 
 @end
