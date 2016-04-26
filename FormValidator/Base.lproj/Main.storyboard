@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -15,11 +16,68 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="jRO-pi-TCM">
+                                <rect key="frame" x="200" y="40" width="200" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="Cas-VI-IvK"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="M9i-1p-Sns"/>
+                                </connections>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Mailing Address" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6e2-en-whT">
+                                <rect key="frame" x="200" y="78" width="200" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="9Aa-r7-85d"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="nTw-ey-efn"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="KNW-6y-0nk"/>
+                                </connections>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Zipcode" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PaN-R8-10R">
+                                <rect key="frame" x="200" y="116" width="200" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="Q9D-Ac-kIk"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="kxM-IO-6fC"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="lc5-kD-FGh"/>
+                                </connections>
+                            </textField>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="PaN-R8-10R" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="05r-YN-Oef"/>
+                            <constraint firstItem="jRO-pi-TCM" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="I40-30-0p5"/>
+                            <constraint firstItem="PaN-R8-10R" firstAttribute="top" secondItem="6e2-en-whT" secondAttribute="bottom" constant="8" id="JJ0-BT-aJ3"/>
+                            <constraint firstItem="jRO-pi-TCM" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="20" id="oJs-dk-9K5"/>
+                            <constraint firstItem="6e2-en-whT" firstAttribute="top" secondItem="jRO-pi-TCM" secondAttribute="bottom" constant="8" id="t3l-Rq-Bbd"/>
+                            <constraint firstItem="6e2-en-whT" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="vDE-It-ziV"/>
+                            <constraint firstItem="jRO-pi-TCM" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="vFx-gO-odM"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="vFx-gO-odM"/>
+                            </mask>
+                        </variation>
                     </view>
+                    <connections>
+                        <outlet property="addressTextField" destination="6e2-en-whT" id="n21-Fc-Ne6"/>
+                        <outlet property="nameTextField" destination="jRO-pi-TCM" id="WYj-6x-4JU"/>
+                        <outlet property="zipTextField" destination="PaN-R8-10R" id="YBz-Po-Wzv"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="427" y="390"/>
         </scene>
     </scenes>
 </document>
