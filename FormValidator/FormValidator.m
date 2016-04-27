@@ -56,9 +56,21 @@
 }
 
 -(BOOL) isValidPhone:(NSString *)phoneString{
-    BOOL rc = YES;
- 
+    NSTextCheckingType detectorType = NSTextCheckingTypePhoneNumber;
+    
+    NSError * error;
+    
+    NSDataDetector * dataDetector = [NSDataDetector dataDetectorWithTypes:detectorType error:&error];
+    
+    __block BOOL rc = NO;
+    
+    [dataDetector enumerateMatchesInString:phoneString options:kNilOptions range:NSMakeRange(0, [phoneString length]) usingBlock:^(NSTextCheckingResult * _Nullable result, NSMatchingFlags flags, BOOL * _Nonnull stop) {
+        rc = YES;
+        
+    }];
+    
     return rc;
+
 }
 
 -(BOOL) isZipCode:(NSString*)zipString{
